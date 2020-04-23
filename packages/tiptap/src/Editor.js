@@ -11,12 +11,7 @@ import { gapCursor } from 'prosemirror-gapcursor'
 import { keymap } from 'prosemirror-keymap'
 import { baseKeymap } from 'prosemirror-commands'
 import { inputRules, undoInputRule } from 'prosemirror-inputrules'
-import {
- markIsActive,
- nodeIsActive,
- getMarkAttrs,
- getNodeAttrs,
-} from 'tiptap-utils'
+import { markIsActive, nodeIsActive, getMarkAttrs } from 'tiptap-utils'
 import {
   injectCSS,
   camelCase,
@@ -191,7 +186,10 @@ export default class Editor extends Emitter {
   createSchema() {
     return new Schema({
       topNode: this.options.topNode,
-      nodes: this.nodes,
+      nodes: {
+        ...this.nodes,
+        ...this.extensions.nodeExtensions,
+      },
       marks: this.marks,
     })
   }
@@ -480,12 +478,6 @@ export default class Editor extends Emitter {
     return this.activeMarkAttrs[type]
   }
 
-  getNodeAttrs(type = null) {
-    return {
-      ...getNodeAttrs(this.state, this.schema.nodes[type]),
-    }
-  }
-
   get isActive() {
     return Object
       .entries({
@@ -498,11 +490,14 @@ export default class Editor extends Emitter {
       }), {})
   }
 
-  registerPlugin(plugin = null, handlePlugins) {
-    const plugins = typeof handlePlugins === 'function'
-      ? handlePlugins(plugin, this.state.plugins)
-      : [plugin, ...this.state.plugins]
-    const newState = this.state.reconfigure({ plugins })
+  registerPlugin(plugin = null) {
+    if (!plugin) {
+      return
+    }
+
+    const newState = this.state.reconfigure({
+      plugins: this.state.plugins.concat([plugin]),
+    })
     this.view.updateState(newState)
   }
 

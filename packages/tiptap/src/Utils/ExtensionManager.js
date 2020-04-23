@@ -31,7 +31,7 @@ export default class ExtensionManager {
               Object.assign(obj, { [prop]: value })
 
               if (changed) {
-                view.updateState(view.state)
+                extension.update(view)
               }
 
               return true
@@ -45,6 +45,15 @@ export default class ExtensionManager {
       .filter(extension => extension.type === 'mark')
       .reduce((marks, { name, schema }) => ({
         ...marks,
+        [name]: schema,
+      }), {})
+  }
+
+  get nodeExtensions() {
+    return this.extensions
+      .filter(extension => extension.type === 'extension' && extension.name === 'alignment')
+      .reduce((extensions, { name, schema }) => ({
+        ...extensions,
         [name]: schema,
       }), {})
   }

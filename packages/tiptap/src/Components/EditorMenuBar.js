@@ -52,7 +52,6 @@ export default {
       commands: this.editor.commands,
       isActive: this.editor.isActive,
       getMarkAttrs: this.editor.getMarkAttrs.bind(this.editor),
-      getNodeAttrs: this.editor.getNodeAttrs.bind(this.editor),
     })
   },
 

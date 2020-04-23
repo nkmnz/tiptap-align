@@ -23,6 +23,10 @@ export default class Extension {
     return 'extension'
   }
 
+  get update() {
+    return () => {}
+  }
+
   get defaultOptions() {
     return {}
   }

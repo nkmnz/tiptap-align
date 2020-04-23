@@ -45,10 +45,6 @@ export default class ComponentView {
       this.setSelection = this.extension.setSelection
     }
 
-    if (typeof this.extension.update === 'function') {
-      this.update = this.extension.update
-    }
-
     this.vm = new Component({
       parent: this.parent,
       propsData: props,
