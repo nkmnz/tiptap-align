@@ -27,6 +27,6 @@
     "prosemirror-state": "1.3.2",
     "prosemirror-tables": "1.0.0",
     "prosemirror-utils": "0.9.6",
-    "tiptap-utils": "git+https://github.com/nkmnz/tiptap-align/tree/master/packages/tiptap-utils"
+    "tiptap-utils": "git+https://github.com/nkmnz/tiptap-align/packages/tiptap-utils"
   }
 }

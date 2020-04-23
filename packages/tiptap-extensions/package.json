@@ -30,8 +30,8 @@
     "prosemirror-transform": "1.2.2",
     "prosemirror-utils": "0.9.6",
     "prosemirror-view": "1.13.4",
-    "tiptap-commands": "git+https://github.com/nkmnz/tiptap-align/tree/master/packages/tiptap",
-    "tiptap-commands": "git+https://github.com/nkmnz/tiptap-align/tree/master/packages/tiptap-commands"
+    "tiptap": "git+https://github.com/nkmnz/tiptap-align/packages/tiptap",
+    "tiptap-commands": "git+https://github.com/nkmnz/tiptap-align/packages/tiptap-commands"
   },
   "peerDependencies": {
     "vue": "^2.5.17",
